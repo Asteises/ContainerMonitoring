@@ -1,0 +1,22 @@
+{
+  "containersCount": 3,
+  "datetimeStartEmulation": "2021-11-17 03:38:10",
+  "maxTimeShift": 4,
+  "samplingStep": 5,
+  "stepEmulationCount": 22,
+  "parameters": [
+    {
+      "id": 1,
+      "name": "polar",
+      "average": 5,
+      "maxScatter": 66
+    },
+    {
+      "id": 2,
+      "name": "poluse",
+      "average": 6,
+      "maxScatter": 42
+    }
+  ],
+  "intervalSendingMessages": 4
+}
