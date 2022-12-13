@@ -1,4 +1,4 @@
-package ru.technodiasoft.sensorrequestmanger.dto;
+package ru.technodiasoft.sensorrequestmanger.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
