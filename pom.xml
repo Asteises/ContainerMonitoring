@@ -13,6 +13,7 @@
     <modules>
         <module>emulator</module>
         <module>sensor-request-manger</module>
+        <module>processor</module>
     </modules>
 
     <properties>
@@ -23,6 +24,8 @@
         <puppycrawl.checkstyle.version>8.45</puppycrawl.checkstyle.version>
 
         <lombok.version>1.18.20</lombok.version>
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+        <mapstruct-processor.version>1.5.2.Final</mapstruct-processor.version>
         <spring-web.version>2.5.6</spring-web.version>
         <swagger.version>2.9.2</swagger.version>
         <jackson.version>2.13.0</jackson.version>
@@ -168,6 +171,18 @@
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                             <version>${lombok.version}</version>
+                        </path>
+                        <!-- This is needed when using Lombok 1.18.16 and above -->
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>${lombok-mapstruct-binding.version}</version>
+                        </path>
+                        <!-- Mapstruct should follow the lombok path(s) -->
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct-processor.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

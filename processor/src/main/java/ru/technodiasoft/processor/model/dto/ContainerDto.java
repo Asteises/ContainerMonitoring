@@ -1,15 +1,17 @@
-package ru.technodiasoft.emulator.dto;
+package ru.technodiasoft.processor.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import ru.technodiasoft.processor.model.Parameter;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Container {
+@Builder
+public class ContainerDto {
 
     private LocalDateTime time;
 

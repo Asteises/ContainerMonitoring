@@ -1,6 +1,5 @@
 package ru.technodiasoft.sensorrequestmanger.service;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -10,12 +9,11 @@ import ru.technodiasoft.sensorrequestmanger.model.ContainerParameters;
 
 import java.util.List;
 
-//TODO Подготовить модуль Процессор, добавить БД и тд.
 @Slf4j
 @Service
 public class Producer {
 
-    private KafkaTemplate<String, Container> kafkaTemplate;
+    private final KafkaTemplate<String, Container> kafkaTemplate;
 
     private final String TOPIC_NAME = "container";
 

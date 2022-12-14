@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet id="v0001-add-tables.xml" author="technodiasoft">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="container"/>
+                <tableExists tableName="parameter"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="container">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="parameter">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="value" type="DECIMAL"/>
+            <column name="container_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="parameter" baseColumnNames="container_id"
+                                 constraintName="fk_container_container_id" referencedTableName="container"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
