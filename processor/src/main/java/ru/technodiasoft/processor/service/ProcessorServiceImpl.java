@@ -12,6 +12,7 @@ import ru.technodiasoft.processor.repository.ContainerStorage;
 import ru.technodiasoft.processor.repository.ParameterStorage;
 
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -36,6 +37,11 @@ public class ProcessorServiceImpl implements ProcessorService {
         saveParameters(containerDto.getParameters());
 
         return ResponseEntity.ok("SAVE OK");
+    }
+
+    @Override
+    public Container getContainerById(UUID id) {
+        return containerStorage.findById(id).orElseThrow(null);
     }
 
     /**

@@ -2,6 +2,7 @@ package ru.technodiasoft.processor.mapper;
 
 import org.mapstruct.Context;
 import org.mapstruct.InheritInverseConfiguration;
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -13,8 +14,6 @@ import ru.technodiasoft.processor.service.ProcessorServiceImpl;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.UUID;
-
-//TODO Почему для  импортируется другой класс?
 
 @Mapper(componentModel = "spring",
         injectionStrategy = InjectionStrategy.FIELD,
@@ -30,7 +29,7 @@ public abstract class ContainerMapper {
                                           @Context ProcessorServiceImpl processorService);
 
     @InheritInverseConfiguration
-    @Mapping(target = "time", source = "container.time")
+    @Mapping(target = "time", source = "time")
     public abstract ContainerDto toDto(Container container);
 }
 

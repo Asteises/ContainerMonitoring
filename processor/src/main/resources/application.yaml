@@ -1,2 +1,26 @@
 service:
   url: http://localhost:8081
+
+spring:
+  main:
+    banner-mode: off
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    hikari:
+      maximum-pool-size: 6
+      minimum-idle: 2
+      connection-timeout: 10000
+  application:
+    name: Agregator
+
+kafka:
+  container:
+    bootstrapAddress: localhost:9092
+    groupId: containerGroup
+    enabled: true
+    topic: container
