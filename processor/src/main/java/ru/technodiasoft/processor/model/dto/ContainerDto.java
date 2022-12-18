@@ -13,6 +13,9 @@ import java.util.List;
 @Builder
 public class ContainerDto {
 
+    // TODO
+    private long id;
+
     private LocalDateTime time;
 
     private List<Parameter> parameters;

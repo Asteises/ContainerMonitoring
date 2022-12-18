@@ -23,7 +23,7 @@ public class SensorController {
     @PostMapping
     public ResponseEntity<String> saveContainer(@RequestBody List<ContainerParameters> request) {
 
-        log.info("log");
+        log.info("Пришли данные request: {}", request);
         producer.sendMessage(request);
         return ResponseEntity.ok("OK");
     }
