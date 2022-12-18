@@ -5,16 +5,13 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class ParameterDto {
 
     private String name;
 
     private BigDecimal value;
 
-    private UUID containerId;
+    public ParameterDto() {}
 }

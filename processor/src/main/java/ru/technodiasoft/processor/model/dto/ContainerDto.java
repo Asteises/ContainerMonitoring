@@ -6,10 +6,8 @@ import ru.technodiasoft.processor.model.Parameter;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
 public class ContainerDto {
 
@@ -18,5 +16,7 @@ public class ContainerDto {
 
     private LocalDateTime time;
 
-    private List<Parameter> parameters;
+    private List<ParameterDto> parameters;
+
+    public ContainerDto() {}
 }

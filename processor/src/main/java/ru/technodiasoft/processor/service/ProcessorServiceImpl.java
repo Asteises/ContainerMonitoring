@@ -8,6 +8,7 @@ import ru.technodiasoft.processor.mapper.ContainerMapper;
 import ru.technodiasoft.processor.model.Container;
 import ru.technodiasoft.processor.model.Parameter;
 import ru.technodiasoft.processor.model.dto.ContainerDto;
+import ru.technodiasoft.processor.model.dto.ParameterDto;
 import ru.technodiasoft.processor.repository.ContainerStorage;
 import ru.technodiasoft.processor.repository.ParameterStorage;
 
@@ -49,9 +50,9 @@ public class ProcessorServiceImpl implements ProcessorService {
      *
      * @param parameters #{@link Parameter}
      */
-    private void saveParameters(List<Parameter> parameters) {
+    private void saveParameters(List<ParameterDto> parameters) {
 
-        parameterStorage.saveAll(parameters);
+//        parameterStorage.saveAll(parameters);
         log.info("Сохраняем в БД все parameter: {}", parameters);
     }
 }

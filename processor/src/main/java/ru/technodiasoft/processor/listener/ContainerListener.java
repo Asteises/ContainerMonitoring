@@ -13,13 +13,18 @@ import ru.technodiasoft.processor.model.dto.ContainerDto;
 @Component
 public class ContainerListener {
 
-    @Value("${kafka.container.topic}")
-    private String topic;
+//    @Value("${kafka.container.topic}")
+//    private String topic;
+//
+//    //topic - указали в producer
+//    @KafkaListener(topics = "container", groupId = "fGroup", containerFactory = "kafkaListenerContainerFactory")
+//    public void listenerContainer(@Payload ContainerDto containerDto, @Headers MessageHeaders messageHeaders) {
+//        log.debug("container: {}", containerDto);
+//        log.debug("messageHeaders: {}", messageHeaders);
+//    }
 
-    //topic - указали в producer
-    @KafkaListener(topics = "container", groupId = "fGroup", containerFactory = "kafkaListenerContainerFactory")
-    public void listenerContainer(@Payload ContainerDto containerDto, @Headers MessageHeaders messageHeaders) {
-        log.debug("container: {}", containerDto);
-        log.debug("messageHeaders: {}", messageHeaders);
+    @KafkaListener(topics = "container", groupId = "firstGroup", containerFactory = "kafkaListenerContainerFactory")
+    public void listenContainer(@Payload ContainerDto containerValue, @Headers MessageHeaders headers) {
+        log.debug("Received container: {}", containerValue.toString());
     }
 }

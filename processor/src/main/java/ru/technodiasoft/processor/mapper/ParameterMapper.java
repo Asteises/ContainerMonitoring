@@ -35,6 +35,6 @@ public abstract class ParameterMapper {
     @InheritInverseConfiguration
     @Mapping(target = "name", source = "name")
     @Mapping(target = "value", source = "value")
-    @Mapping(target = "containerId", source = "container.id")
+//    @Mapping(target = "containerId", source = "container.id")
     public abstract ParameterDto toDto(Parameter parameter);
 }
