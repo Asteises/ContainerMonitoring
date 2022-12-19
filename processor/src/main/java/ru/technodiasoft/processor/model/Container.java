@@ -1,15 +1,10 @@
 package ru.technodiasoft.processor.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -28,4 +23,7 @@ public class Container {
 
     @Column(name = "time")
     private LocalDateTime time;
+
+//    @OneToMany(mappedBy="container")
+//    private List<Parameter> parameters;
 }

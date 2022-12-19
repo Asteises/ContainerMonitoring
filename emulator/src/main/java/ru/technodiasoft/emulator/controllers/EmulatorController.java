@@ -14,9 +14,9 @@ import ru.technodiasoft.emulator.services.Emulator;
 import java.io.IOException;
 import java.util.Objects;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/emulator")
-@RequiredArgsConstructor
 public class EmulatorController {
     private final Emulator emulator;
     private final EmulationConfigConverter converter;

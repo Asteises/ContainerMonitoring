@@ -23,8 +23,6 @@ public abstract class ParameterMapper {
 
     public static final ParameterMapper INSTANCE = Mappers.getMapper(ParameterMapper.class);
 
-    //TODO Нужно писать код для маппинга String, BigDecimal ?
-
     @Mapping(target = "id", expression = "java(UUID.randomUUID())")
     @Mapping(target = "name", source = "name")
     @Mapping(target = "value", source = "value")
