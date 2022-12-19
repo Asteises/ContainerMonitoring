@@ -1,20 +1,23 @@
-package ru.technodiasoft.sensorrequestmanger.model;
+package ru.technodiasoft.processor.model.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@Builder
 @AllArgsConstructor
-@NoArgsConstructor
-public class Container {
+public class ContainerValue {
 
     private long id;
 
     private LocalDateTime time;
 
-    private List<Parameter> parameters;
+    private List<ParameterDto> parameters;
+
+    public ContainerValue() {
+    }
 }

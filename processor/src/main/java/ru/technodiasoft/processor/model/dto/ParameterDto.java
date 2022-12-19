@@ -1,15 +1,16 @@
 package ru.technodiasoft.processor.model.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @Builder
+@AllArgsConstructor
+
 public class ParameterDto {
 
     private String name;
@@ -17,4 +18,7 @@ public class ParameterDto {
     private BigDecimal value;
 
     private UUID containerId;
+
+    public ParameterDto() {
+    }
 }
