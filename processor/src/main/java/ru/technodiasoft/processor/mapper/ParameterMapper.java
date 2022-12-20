@@ -1,11 +1,7 @@
 package ru.technodiasoft.processor.mapper;
 
 import lombok.AllArgsConstructor;
-import org.mapstruct.Context;
-import org.mapstruct.InheritInverseConfiguration;
-import org.mapstruct.InjectionStrategy;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.technodiasoft.processor.model.Container;
@@ -20,7 +16,7 @@ import java.util.UUID;
 
 @Mapper(componentModel = "spring",
         injectionStrategy = InjectionStrategy.FIELD,
-        imports = {UUID.class, LocalDateTime.class, Collections.class},
+        imports = {Long.class, LocalDateTime.class, Collections.class},
         uses = {ProcessorService.class})
 public abstract class ParameterMapper {
 
@@ -29,9 +25,11 @@ public abstract class ParameterMapper {
     @Autowired
     protected ProcessorService processorService;
 
-    @Mapping(target = "name", source = "name")
-    @Mapping(target = "value", source = "value")
-    public abstract Parameter toParameter(ParameterDto parameterDto, @Context ContainerStorage containerStorage);
+    @Mapping(target = "name", source = "parameterDto.name")
+    @Mapping(target = "value", source = "parameterDto.value")
+    @Mapping(target = "container.id", expression = "java(container.getId())")
+    public abstract Parameter toParameter(ParameterDto parameterDto, @Context Container container);
+
 
     @InheritInverseConfiguration
     @Mapping(target = "name", source = "name")

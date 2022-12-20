@@ -11,6 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Container {
 
+    long id;
+
     private LocalDateTime time;
 
     private List<Parameter> parameters;

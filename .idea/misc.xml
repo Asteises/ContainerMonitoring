@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/sensor-request-manger/pom.xml" />
         <option value="$PROJECT_DIR$/processor/pom.xml" />
         <option value="$PROJECT_DIR$/liquibase-migrations/pom.xml" />
+        <option value="$PROJECT_DIR$/client/pom.xml" />
       </list>
     </option>
   </component>

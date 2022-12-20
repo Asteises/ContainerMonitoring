@@ -37,7 +37,7 @@ public class ProcessorServiceImpl implements ProcessorService {
         containerStorage.save(currentContainer);
         log.info("Сохраняем в БД container: {}", currentContainer);
 
-        saveParameters(containerValue.getParameters());
+        saveParameters(containerValue.getParameters(), currentContainer);
 
         return ResponseEntity.ok("SAVE OK");
     }
@@ -52,10 +52,10 @@ public class ProcessorServiceImpl implements ProcessorService {
      *
      * @param parameters #{@link ParameterDto}
      */
-    private void saveParameters(List<ParameterDto> parameters) {
+    private void saveParameters(List<ParameterDto> parameters, Container container) {
 
         List<Parameter> result = parameters.stream()
-                .map(o -> ParameterMapper.INSTANCE.toParameter(o, containerStorage))
+                .map(o -> ParameterMapper.INSTANCE.toParameter(o, container))
                 .toList();
 
         parameterStorage.saveAll(result);

@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -17,13 +16,12 @@ import java.util.UUID;
 public class Container {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "time")
     private LocalDateTime time;
 
-    @OneToMany(mappedBy="container")
+    @OneToMany(mappedBy = "container", cascade = CascadeType.ALL)
     private List<Parameter> parameters;
 }

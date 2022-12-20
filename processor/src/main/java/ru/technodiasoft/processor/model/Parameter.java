@@ -35,7 +35,7 @@ public class Parameter {
     @Column(name = "value")
     private BigDecimal value;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "container_id")
     private Container container;
 

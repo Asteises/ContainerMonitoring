@@ -26,7 +26,7 @@ public class EmulationParametersCalculator {
 
     private List<Container> getContainers(List<LocalDateTime> listTime, ContainerConfig config) {
         return listTime.stream()
-                .map(dateTime -> new Container(dateTime, getContainerParameters(config)))
+                .map(dateTime -> new Container((long) (Math.random()*10000), dateTime, getContainerParameters(config)))
                 .collect(Collectors.toList());
     }
 

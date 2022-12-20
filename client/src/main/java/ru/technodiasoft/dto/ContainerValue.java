@@ -1,4 +1,4 @@
-package ru.technodiasoft.processor.model.dto;
+package ru.technodiasoft.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
