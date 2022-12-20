@@ -7,5 +7,5 @@ import ru.technodiasoft.processor.model.Container;
 import java.util.UUID;
 
 @Repository
-public interface ContainerStorage extends JpaRepository<Container, UUID> {
+public interface ContainerStorage extends JpaRepository<Container, Long> {
 }

@@ -10,14 +10,13 @@ import java.util.UUID;
 @Data
 @Builder
 @AllArgsConstructor
-
 public class ParameterDto {
 
     private String name;
 
     private BigDecimal value;
 
-    private UUID containerId;
+    private long containerId;
 
     public ParameterDto() {
     }

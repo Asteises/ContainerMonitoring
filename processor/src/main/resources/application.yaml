@@ -17,6 +17,9 @@ spring:
       connection-timeout: 10000
   application:
     name: Agregator
+  jpa:
+    hibernate:
+      ddl-auto: create
 
 kafka:
   container:

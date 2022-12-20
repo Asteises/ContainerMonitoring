@@ -33,7 +33,7 @@ public class ProcessorServiceImpl implements ProcessorService {
      */
     public ResponseEntity<String> saveContainer(ContainerValue containerValue) {
 
-        Container currentContainer = ContainerMapper.INSTANCE.toContainer(containerValue, this);
+        Container currentContainer = ContainerMapper.INSTANCE.toContainer(containerValue);
         containerStorage.save(currentContainer);
         log.info("Сохраняем в БД container: {}", currentContainer);
 
@@ -43,7 +43,7 @@ public class ProcessorServiceImpl implements ProcessorService {
     }
 
     @Override
-    public Container getContainerById(UUID id) {
+    public Container getContainerById(Long id) {
         return containerStorage.findById(id).orElseThrow(null);
     }
 
@@ -55,7 +55,7 @@ public class ProcessorServiceImpl implements ProcessorService {
     private void saveParameters(List<ParameterDto> parameters) {
 
         List<Parameter> result = parameters.stream()
-                .map(parameterDto -> ParameterMapper.INSTANCE.toParameter(parameterDto, this))
+                .map(o -> ParameterMapper.INSTANCE.toParameter(o, containerStorage))
                 .toList();
 
         parameterStorage.saveAll(result);

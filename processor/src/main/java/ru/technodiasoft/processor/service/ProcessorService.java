@@ -12,5 +12,5 @@ public interface ProcessorService {
 
     ResponseEntity<String> saveContainer(ContainerValue containerValue);
 
-    Container getContainerById(UUID id);
+    Container getContainerById(Long id);
 }

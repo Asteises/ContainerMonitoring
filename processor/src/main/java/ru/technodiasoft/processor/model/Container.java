@@ -19,11 +19,11 @@ public class Container {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private UUID id;
+    private Long id;
 
     @Column(name = "time")
     private LocalDateTime time;
 
-//    @OneToMany(mappedBy="container")
-//    private List<Parameter> parameters;
+    @OneToMany(mappedBy="container")
+    private List<Parameter> parameters;
 }

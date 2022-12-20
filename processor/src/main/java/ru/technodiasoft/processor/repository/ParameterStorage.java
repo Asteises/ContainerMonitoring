@@ -7,5 +7,5 @@ import ru.technodiasoft.processor.model.Parameter;
 import java.util.UUID;
 
 @Repository
-public interface ParameterStorage extends JpaRepository<Parameter, UUID> {
+public interface ParameterStorage extends JpaRepository<Parameter, Long> {
 }
