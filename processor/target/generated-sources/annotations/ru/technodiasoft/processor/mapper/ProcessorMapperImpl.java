@@ -9,14 +9,15 @@ import ru.technodiasoft.processor.model.Container;
 import ru.technodiasoft.processor.model.Parameter;
 import ru.technodiasoft.processor.model.dto.ContainerValue;
 import ru.technodiasoft.processor.model.dto.ParameterDto;
+import ru.technodiasoft.processor.service.ProcessorService;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-12-20T19:31:03+0300",
+    date = "2022-12-21T15:00:53+0300",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
-public class ContainerMapperImpl extends ContainerMapper {
+public class ProcessorMapperImpl extends ProcessorMapper {
 
     @Override
     public Container toContainer(ContainerValue containerValue) {
@@ -50,7 +51,24 @@ public class ContainerMapperImpl extends ContainerMapper {
         return containerValue.build();
     }
 
-    protected ParameterDto parameterToParameterDto(Parameter parameter) {
+    @Override
+    public Parameter toParameter(ParameterDto parameterDto, ProcessorService processorService) {
+        if ( parameterDto == null ) {
+            return null;
+        }
+
+        Parameter.ParameterBuilder parameter = Parameter.builder();
+
+        parameter.name( parameterDto.getName() );
+        parameter.value( parameterDto.getValue() );
+
+        parameter.container( processorService.getContainerById(parameterDto.getContainerId()) );
+
+        return parameter.build();
+    }
+
+    @Override
+    public ParameterDto toDto(Parameter parameter) {
         if ( parameter == null ) {
             return null;
         }
@@ -59,6 +77,10 @@ public class ContainerMapperImpl extends ContainerMapper {
 
         parameterDto.name( parameter.getName() );
         parameterDto.value( parameter.getValue() );
+        Long id = parameterContainerId( parameter );
+        if ( id != null ) {
+            parameterDto.containerId( id );
+        }
 
         return parameterDto.build();
     }
@@ -70,9 +92,24 @@ public class ContainerMapperImpl extends ContainerMapper {
 
         List<ParameterDto> list1 = new ArrayList<ParameterDto>( list.size() );
         for ( Parameter parameter : list ) {
-            list1.add( parameterToParameterDto( parameter ) );
+            list1.add( toDto( parameter ) );
         }
 
         return list1;
+    }
+
+    private Long parameterContainerId(Parameter parameter) {
+        if ( parameter == null ) {
+            return null;
+        }
+        Container container = parameter.getContainer();
+        if ( container == null ) {
+            return null;
+        }
+        Long id = container.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
     }
 }

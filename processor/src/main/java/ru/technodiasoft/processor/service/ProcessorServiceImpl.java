@@ -2,11 +2,9 @@ package ru.technodiasoft.processor.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import ru.technodiasoft.processor.mapper.ContainerMapper;
-import ru.technodiasoft.processor.mapper.ParameterMapper;
+import ru.technodiasoft.processor.mapper.ProcessorMapper;
 import ru.technodiasoft.processor.model.Container;
 import ru.technodiasoft.processor.model.Parameter;
 import ru.technodiasoft.processor.model.dto.ContainerValue;
@@ -15,7 +13,6 @@ import ru.technodiasoft.processor.repository.ContainerStorage;
 import ru.technodiasoft.processor.repository.ParameterStorage;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Service
@@ -33,18 +30,28 @@ public class ProcessorServiceImpl implements ProcessorService {
      */
     public ResponseEntity<String> saveContainer(ContainerValue containerValue) {
 
-        Container currentContainer = ContainerMapper.INSTANCE.toContainer(containerValue);
+        Container currentContainer = ProcessorMapper.INSTANCE.toContainer(containerValue);
         containerStorage.save(currentContainer);
-        log.info("Сохраняем в БД container: {}", currentContainer);
+        log.debug("Сохраняем в БД container: {}", currentContainer);
 
         saveParameters(containerValue.getParameters(), currentContainer);
 
         return ResponseEntity.ok("SAVE OK");
     }
 
+    /**
+     * Метод находит в БД Container по id и возвращает его.
+     *
+     * @param id containerId
+     * @return Container #{@link Container}
+     */
     @Override
     public Container getContainerById(Long id) {
-        return containerStorage.findById(id).orElseThrow(null);
+
+        Container result = containerStorage.findById(id).orElseThrow(null);
+        log.debug("Нашли в БД контейнер и возвращаем: {}", result);
+
+        return result;
     }
 
     /**
@@ -55,10 +62,11 @@ public class ProcessorServiceImpl implements ProcessorService {
     private void saveParameters(List<ParameterDto> parameters, Container container) {
 
         List<Parameter> result = parameters.stream()
-                .map(o -> ParameterMapper.INSTANCE.toParameter(o, container))
+                .peek(parameterDto -> parameterDto.setContainerId(container.getId()))
+                .map(parameterDto -> ProcessorMapper.INSTANCE.toParameter(parameterDto, this))
                 .toList();
 
         parameterStorage.saveAll(result);
-        log.info("Сохраняем в БД все parameter: {}", result);
+        log.debug("Сохраняем в БД все parameter: {}", result);
     }
 }

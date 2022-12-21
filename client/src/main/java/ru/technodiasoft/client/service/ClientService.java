@@ -1,4 +1,4 @@
-package ru.technodiasoft.client;
+package ru.technodiasoft.client.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import ru.technodiasoft.dto.ContainerValue;
+import ru.technodiasoft.client.dto.ContainerValue;
 
 @RequiredArgsConstructor
 @Service
@@ -24,6 +24,10 @@ public class ClientService {
 
     public ResponseEntity<ContainerValue> get(String containerId) {
 
-        return restTemplate.exchange(PATCH + "/" + containerId, HttpMethod.GET, null, ContainerValue.class);
+        return restTemplate.exchange(
+                PATCH + "/" + containerId,
+                HttpMethod.GET,
+                null,
+                ContainerValue.class);
     }
 }

@@ -1,4 +1,4 @@
-package ru.technodiasoft.dto;
+package ru.technodiasoft.client.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

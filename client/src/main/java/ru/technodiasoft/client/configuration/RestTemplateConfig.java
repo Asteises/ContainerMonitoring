@@ -1,4 +1,4 @@
-package ru.technodiasoft.configuration;
+package ru.technodiasoft.client.configuration;
 
 import org.springframework.context.annotation.Configuration;
 

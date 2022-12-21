@@ -20,6 +20,7 @@
         <module>emulator</module>
         <module>sensor-request-manger</module>
         <module>processor</module>
+        <module>client</module>
     </modules>
 
     <properties>
